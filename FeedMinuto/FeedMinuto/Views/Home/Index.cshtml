@@ -1,0 +1,62 @@
+﻿@model FeedMinuto.Models.FeedNoticias
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@foreach (var item in Model.ListaFeed)
+{
+    <div>
+        <h3>
+            @item.TituloFeed
+        </h3>
+        <hr />
+        <p>
+            @item.DataPublicacao.ToString("dd/MM/yyyy HH:mm:ss")
+        </p>
+        <p>
+            @Html.Raw(@item.TextoFeed)
+        </p>
+        <p style="color:blue">
+            Número de Palavras do Feed: @item.ContPalavrasFeed
+        </p>
+    </div>
+    
+}
+<hr />
+<hr />
+<h2>
+    Palavras em Destaque
+</h2>
+
+<table style="width: 200px; margin-top: 15px; height: 12px; border:outset">
+    <thead>
+        <tr style="border:outset">
+            <td style="min-width: 160px; font-size:large">
+                Palavra
+            </td>
+            <td style="width: 80px; font-size:large">
+                Quantidade
+            </td>
+        </tr>
+    </thead>
+    <tbody style="text-align: left;">
+
+        @foreach (var item in Model.ListaResumo)
+        {
+            <tr style="border:outset">
+                <td style="min-width: 160px;">
+                    @item.Palavra
+                </td>
+                <td style="width: 80px;" align="right">
+                    @item.ContPalavrasResumo
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
